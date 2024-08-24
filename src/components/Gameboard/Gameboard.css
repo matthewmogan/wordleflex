@@ -1,0 +1,27 @@
+.container {
+    margin-top: 1rem;
+    width: 300px;
+    border-radius: .75rem;
+    background: linear-gradient(#79e2ea, #9198e5);
+    margin: auto;
+}
+
+form {
+    max-width: 300px;
+    margin: .6rem auto;
+    display:flex;
+    justify-content: space-between;
+}
+
+input {
+    font-size: 1.1rem;
+    max-width: 150px;
+}
+
+button {
+    font-size: 1.1rem;
+}
+
+for {
+    align-content: center;
+}

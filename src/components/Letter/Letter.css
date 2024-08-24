@@ -1,0 +1,10 @@
+p {
+    background-color: rgba(255, 255, 255, 0.204);
+    width: 2.0rem;
+    height: 2.0rem;
+    margin: .25rem .25rem .25rem;
+    align-content: center;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.25rem;
+;}
