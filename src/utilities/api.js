@@ -6,7 +6,7 @@ export function getRandomWord(n){
         case 3:
             return "toe" 
         case 4:
-            return "apps"
+            return "four"
         case 5:
             return "apple"
         case 6: 

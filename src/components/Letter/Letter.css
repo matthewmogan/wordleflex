@@ -5,6 +5,17 @@ p {
     margin: .25rem .25rem .25rem;
     align-content: center;
     text-align: center;
-    font-weight: 400;
-    font-size: 1.25rem;
-;}
+    font-weight: 600;
+    font-size: 1.25rem
+}
+
+.RR {
+    background-color: rgba(31, 171, 57, 0.70);}
+
+.RW {
+    background-color: rgba(212, 165, 55, 0.70);
+}
+
+.WW {
+    background-color: rgba(85, 84, 84, 0.70);
+}

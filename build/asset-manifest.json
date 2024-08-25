@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/wordleflex/static/css/main.00ba50c8.css",
-    "main.js": "/wordleflex/static/js/main.d8ef2952.js",
+    "main.js": "/wordleflex/static/js/main.b90b703f.js",
     "index.html": "/wordleflex/index.html",
     "main.00ba50c8.css.map": "/wordleflex/static/css/main.00ba50c8.css.map",
-    "main.d8ef2952.js.map": "/wordleflex/static/js/main.d8ef2952.js.map"
+    "main.b90b703f.js.map": "/wordleflex/static/js/main.b90b703f.js.map"
   },
   "entrypoints": [
     "static/css/main.00ba50c8.css",
-    "static/js/main.d8ef2952.js"
+    "static/js/main.b90b703f.js"
   ]
 }

@@ -2,14 +2,14 @@ import "./Letter.css"
 
 export default function Letter(params){
     
-    const{className, id} = params
+    const{id,evaluation,letter} = params
     
     return (
         <p 
             id={id}
-            className={className} 
+            className={evaluation}
         >
-        A {/* Update this with the evaluated state */}
+        {letter}
         </p>
     )
 }

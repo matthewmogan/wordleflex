@@ -19,15 +19,9 @@ export default function Gameboard(){
 
     const [keywordLetters, setKeywordLetters] = useState(startingLetters) // letters in the answer
     const [maxGuesses, setMaxGuesses] = useState(startingGuesses) // max attempts
-
-    // Gameboard states:
-
     const [boardLetters, setBoardLetters] = useState(createBoardState(keywordLetters,maxGuesses,"")) // running tally of the guesses across the whole round
     const [boardEvaluated, setBoardEvaluated] = useState(createBoardState(keywordLetters,maxGuesses,boardEvals.inactive)) 
-
-    //  Active game parameters: 
-
-    const [keyword, setKeyword] = useState(getRandomWord(keywordLetters)) // the answer
+    const [keyword, setKeyword] = useState(getRandomWord(keywordLetters).toUpperCase()) // the answer
     const [guessNumber, setGuessNumber] = useState(0) // attempt number
     const [guess, setGuess] = useState("") // active guess 
 
@@ -36,29 +30,30 @@ export default function Gameboard(){
     const updateKeywordLetters = (event) => {
         event.preventDefault()
         setKeywordLetters(Number(event.target.value))
+        setKeyword(getRandomWord(Number(event.target.value)).toUpperCase())
+        setBoardLetters(createBoardState(Number(event.target.value),maxGuesses,""))
+        setBoardEvaluated(createBoardState(Number(event.target.value),maxGuesses,boardEvals.inactive))
+        setGuessNumber(0)
     }
-    useEffect(() => { // reset game after keyword letters change
-        setKeyword(getRandomWord(keywordLetters)) // reset keyword
-        setBoardLetters(createBoardState(keywordLetters,maxGuesses,"")) // reset boardstate
-        setGuessNumber(0) // reset guess number
-    }, [keywordLetters])
 
     // maxGuesses update event handler:
 
     const updateMaxGuesses = (event) => {
         event.preventDefault()
         setMaxGuesses(Number(event.target.value)) // reset max guesses
-    }
-    useEffect( () => {
-        setBoardLetters(createBoardState(keywordLetters,maxGuesses,"")) // reset boardstate
+        setKeyword(getRandomWord(Number(event.target.value)).toUpperCase())
+        setBoardLetters(createBoardState(keywordLetters,Number(event.target.value),"")) // reset boardstate
+        setBoardEvaluated(createBoardState(keywordLetters,Number(event.target.value),boardEvals.inactive))
         setGuessNumber(0) // reset guess number
-    },[maxGuesses])
+    }
 
     // updateGuess event handler:
 
     const updateGuess = (event) => {
         event.preventDefault()
-        setGuess(event.target.value)
+        let string = event.target.value
+        string = string.toUpperCase()
+        setGuess(string)
     }
 
     const calculateGuess = (event) => {
@@ -98,22 +93,10 @@ export default function Gameboard(){
 
         setGuessNumber(guessNumber+1) // update the guess number
 
-
     }
 
     return (
         <>
-        <div className="container">    
-           {[...Array(maxGuesses).keys()].map((arg) => {
-            return(
-                <GuessRow
-                    key = {arg}
-                    id = {arg}
-                    keywordLetters = {keywordLetters} 
-                />
-            )
-           })}
-        </div>
         <form className="settings">
             <label>Letters:</label>
             <input 
@@ -134,6 +117,19 @@ export default function Gameboard(){
                 onChange={updateMaxGuesses}
             />
         </form>
+        <div className="container">    
+           {[...Array(maxGuesses).keys()].map((arg) => {
+            return(
+                <GuessRow
+                    key = {arg}
+                    id = {arg} // tell GuessRow which ROW it is
+                    keywordLetters = {keywordLetters} // tell GuessRow how many letters (COLs) in the keyword
+                    boardLetters = {boardLetters} // Allow GuessRow to pass the Letters their value
+                    boardEvaluated = {boardEvaluated} // Allow GuessRow to pass the Letters their evaluation class
+                />
+            )
+           })}
+        </div>
         <form className="guess" onSubmit={calculateGuess}>
             <label>Guess:</label>
             <input 

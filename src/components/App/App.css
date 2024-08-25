@@ -1,3 +1,36 @@
-.active {
-  font-weight: 800;
+nav {
+  background-color:#79e2ea;
+  overflow: hidden;
+}
+
+nav ul {
+  list-style-type: none; /* Remove bullets */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Arrange items horizontally */
+  justify-content: space-between; /* Center the navbar items */
+}
+
+nav ul li {
+  margin: 0;
+}
+
+nav ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #eab779
+  /* #575757; */
+}
+
+nav ul li a.active {
+  background-color:  #9198e5
+  /* #4CAF50;  */
 }
