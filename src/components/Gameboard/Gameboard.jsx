@@ -72,26 +72,30 @@ export default function Gameboard(){
         // 1. Update the letter state of the board 
         
         const guessArray = [...guess] // spread the guess into an Array
-        const newState = [...boardLetters] // create a copy of the state, so we don't update state directly
-        newState[guessNumber] = guessArray // update the copy of the board state with the guess inserted       
-        
+        const newBoardLetters = boardLetters.map(row => [...row]) // create a deep copy of the 2D state, so we don't update state directly
+        newBoardLetters[guessNumber] = guessArray // update the copy of the board state with the guess inserted       
+        setBoardLetters(newBoardLetters) // update the letter state of the board
+
         // 2. Evaluate the guess and update the evaluated state
         
-        const evaluatedArray = [...boardEvaluated]
+        const evaluatedArray = Array(keywordLetters)
         const keywordArray = Array.from(keyword)
+        const newBoardEvaluated = boardEvaluated.map(row => [...row])
 
         guessArray.forEach((x,index) => {
             if (x === keywordArray[index]) {
-                evaluatedArray[guessNumber][index] = boardEvals.rightLetter_RightPlace
+                evaluatedArray[index] = boardEvals.rightLetter_RightPlace
             } else if (keywordArray.some(y => x === y)) {
-                evaluatedArray[guessNumber][index] = boardEvals.rightLetter_WrongPlace
+                evaluatedArray[index] = boardEvals.rightLetter_WrongPlace
             } else 
-               evaluatedArray[guessNumber][index] = boardEvals.wrongLetter_WrongPlace         
+               evaluatedArray[index] = boardEvals.wrongLetter_WrongPlace         
         })
 
-        // 3. Update relevant states
-        
-        setBoardLetters(newState) // update the letter state of the board
+        newBoardEvaluated[guessNumber] = [...evaluatedArray] // update the 
+        setBoardEvaluated(newBoardEvaluated) // update the evaluated state
+
+        // 3. Update other relevant states
+
         setGuessNumber(guessNumber+1) // update the guess number
 
 
