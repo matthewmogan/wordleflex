@@ -9,8 +9,14 @@ export function getRandomWord(n){
             return "apps"
         case 5:
             return "apple"
+        case 6: 
+            return "banana"
+        case 7:
+            return "nutella"
+        case 8:
+            return "approach"    
         default:
+            console.log("please provide a string between 3 and 8 inclusive")
             return undefined
-            console.log("please provide a string between 3 and 5 inclusive")
     }
 }
