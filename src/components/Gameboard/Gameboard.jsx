@@ -25,7 +25,7 @@ export default function Gameboard(){
     const roundStatusMessages = {
         active: "Guess the secret word!",
         won: "You won!",
-        lost: "You lost!"
+        lost: "You lost! The word was"
     }
 
 
@@ -68,7 +68,6 @@ export default function Gameboard(){
     const updateMaxGuesses = (event) => {
         event.preventDefault()
         setMaxGuesses(Number(event.target.value)) 
-        setKeyword(getRandomWord(Number(event.target.value)).toUpperCase())
         setBoardLetters(createBoardState(keywordLetters,Number(event.target.value),""))
         setBoardEvaluated(createBoardState(keywordLetters,Number(event.target.value),letterEvals.inactive))
         setGuessNumber(0) 
@@ -140,11 +139,11 @@ export default function Gameboard(){
     const updateStatusText = (status) => {
         switch(status) {
             case roundStatuses.active:
-                return "Guess the word!"
+                return roundStatusMessages.active
             case roundStatuses.won:
-                return "You won!"
+                return roundStatusMessages.won
             case roundStatuses.lost:
-                return "You lost!"
+                return roundStatusMessages.lost + " " + keyword
         }
     }
 
