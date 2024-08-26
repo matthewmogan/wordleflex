@@ -9,13 +9,13 @@ p {
     font-size: 1.25rem
 }
 
-.RR {
+.rightLetter_RightPlace {
     background-color: rgba(31, 171, 57, 0.70);}
 
-.RW {
+.rightLetter_WrongPlace {
     background-color: rgba(212, 165, 55, 0.70);
 }
 
-.WW {
+.wrongLetter_WrongPlace {
     background-color: rgba(85, 84, 84, 0.70);
 }

@@ -25,3 +25,9 @@ button {
 label {
     align-content: center;
 }
+
+h2 {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+}

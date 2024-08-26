@@ -1,0 +1,16 @@
+.instructions {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+}
+
+.instructionsP {
+    width: 100%;
+    height:fit-content;
+    text-align: center
+}
+
+.instructionsH1 {
+    text-align: center;
+}
