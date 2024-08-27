@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 import "./Gameboard.css"; 
-import {getRandomWord} from "../../utilities/api"
-import {createBoardState} from "../../utilities/helpers"
+import {getRandomWord} from "../../utilities/modules"
+import {createBoardState} from "../../utilities/helpers" 
+import {validateWord} from "../../utilities/apis";
 import GuessRow from "../GuessRow/GuessRow"
 
 export default function Gameboard(){
+    
+    validateWord("word").then(result => console.log(result) )
     
     // default starting guesses (rows) and letters (columnns):
     const startingGuesses = 6 
@@ -144,6 +147,8 @@ export default function Gameboard(){
                 return roundStatusMessages.won
             case roundStatuses.lost:
                 return roundStatusMessages.lost + " " + keyword
+            default:
+                return roundStatusMessages.active
         }
     }
 
