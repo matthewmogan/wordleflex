@@ -32,10 +32,11 @@ Create a Wordle clone to demonstrate command of HTML, CSS, JavaScript, and React
 ## Future work
 
 **What's coming end of August?** 
-- Improve reactive design (desktop, tablet, mobile)
-- Guess validation using dictionary API
-- Clear guess input bar after guesses are submitted
-- Link modules and APIs in README 
+- NOTE - on branch guessValidation, need to create validation check and merge into main
+- P0 Improve reactive design (desktop, tablet, mobile)
+- P0 Guess validation using dictionary API
+- P1 Clear guess input bar after guesses are submitted
+- P1 Link modules and APIs in README 
 
 **What's coming September / October?**
 - Redux state management, if app continues to increase in complexity
