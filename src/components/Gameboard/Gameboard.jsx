@@ -23,10 +23,11 @@ export default function Gameboard(){
         won: "won",
         lost: "lost"
     }
+    // round status messages
     const roundStatusMessages = {
         active: "Guess the secret word!",
         won: "You won!",
-        lost: "You lost! The word was",
+        lost: "You lost! The word was", // keyword is appended when rendered
         invalidWord: "Guess must be a valid word"
     }
 
@@ -109,7 +110,16 @@ export default function Gameboard(){
 
         // 2. Check if the word is invalid - exit if invalid and change the status message to "please enter a valid word" - continue if valid
 
-        validateWord("word").then(result => console.log(result) )
+        validateWord("word").then(result => {
+            console.log("checking word")    
+            if (result === "invalid" ){
+                    setStatusText(roundStatusMessages.invalidWord)
+                    return
+                    // shouldn't this exit the function?
+                } else
+                setStatusText(roundStatusMessages.active)
+            }
+        )
 
         // 3. Update the letter state of the board 
         
