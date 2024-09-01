@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import "./Gameboard.css"; 
-import {getRandomWord} from "../../utilities/api"
-import {createBoardState} from "../../utilities/helpers"
+import {getRandomWord} from "../../utilities/modules"
+import {createBoardState} from "../../utilities/helpers" 
+import {validateWord} from "../../utilities/apis";
 import GuessRow from "../GuessRow/GuessRow"
 
 export default function Gameboard(){
@@ -22,12 +23,13 @@ export default function Gameboard(){
         won: "won",
         lost: "lost"
     }
+    // round status messages
     const roundStatusMessages = {
         active: "Guess the secret word!",
         won: "You won!",
-        lost: "You lost! The word was"
+        lost: "You lost! The word was", // keyword is appended when rendered
+        invalidWord: "Guess must be a valid word"
     }
-
 
     // WordleFlex States:
 
@@ -68,6 +70,7 @@ export default function Gameboard(){
     const updateMaxGuesses = (event) => {
         event.preventDefault()
         setMaxGuesses(Number(event.target.value)) 
+        setKeyword(getRandomWord(keywordLetters).toUpperCase())
         setBoardLetters(createBoardState(keywordLetters,Number(event.target.value),""))
         setBoardEvaluated(createBoardState(keywordLetters,Number(event.target.value),letterEvals.inactive))
         setGuessNumber(0) 
@@ -84,9 +87,18 @@ export default function Gameboard(){
         setGuess(string)
     }
 
+    const resetGame = () => {
+        setKeyword(getRandomWord(keywordLetters).toUpperCase())
+        setBoardLetters(createBoardState(keywordLetters,maxGuesses,""))
+        setBoardEvaluated(createBoardState(keywordLetters,maxGuesses,letterEvals.inactive))
+        setGuessNumber(0) 
+        setRoundStatus(roundStatuses.active)        
+        setStatusText(roundStatusMessages.active)
+    }
+
     // Calculate Guess 
 
-    const calculateGuess = (event) => {
+    async function calculateGuess (event) {
         
         event.preventDefault()
         
@@ -96,7 +108,20 @@ export default function Gameboard(){
             return 
         }
 
-        // 2. Update the letter state of the board 
+        // 2. Check if the word is invalid - exit if invalid and change the status message to "please enter a valid word" - continue if valid
+
+        const result = await validateWord(guess)
+        console.log("checking word")    
+        if (result === "invalid" ){
+            setStatusText(roundStatusMessages.invalidWord)
+            console.log("invalid")
+            return
+        } else
+        setStatusText(roundStatusMessages.active)
+        console.log("valid")
+
+
+        // 3. Update the letter state of the board 
         
         // spread the guess into an Array:
         const guessArray = [...guess] 
@@ -107,7 +132,7 @@ export default function Gameboard(){
         // update the letter state of the board:
         setBoardLetters(newBoardLetters) 
 
-        // 3. Evaluate the guess and update the evaluated state and guess number
+        // 4. Evaluate the guess and update the evaluated state and guess number
         
         const evaluatedArray = Array(keywordLetters)
         const keywordArray = Array.from(keyword)
@@ -124,7 +149,7 @@ export default function Gameboard(){
         setBoardEvaluated(newBoardEvaluated) 
         setGuessNumber(guessNumber+1) 
 
-        // 4. Check if the player won or lost and update the round status and status text
+        // 5. Check if the player won or lost and update the round status and status text
 
         if(evaluatedArray.every((x) => x === letterEvals.rightLetter_RightPlace)){
             setRoundStatus(roundStatuses.won) 
@@ -144,6 +169,8 @@ export default function Gameboard(){
                 return roundStatusMessages.won
             case roundStatuses.lost:
                 return roundStatusMessages.lost + " " + keyword
+            default:
+                return roundStatusMessages.active
         }
     }
 
@@ -168,6 +195,11 @@ export default function Gameboard(){
                 value={maxGuesses}
                 onChange={updateMaxGuesses}
             />
+        <button 
+            className="resetButton" 
+            onClick={()=>{resetGame()}}
+        >Reset
+        </button>
         </form>
         <div className="container">    
            {[...Array(maxGuesses).keys()].map((arg) => {

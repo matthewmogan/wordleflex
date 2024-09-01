@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, Link, NavLink, useLocation } from 'react-router-dom';
+import { Route, Routes, NavLink } from 'react-router-dom';
 import Gameboard from '../Gameboard/Gameboard'
 import Instructions from '../Instructions/Instructions'
 

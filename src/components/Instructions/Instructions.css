@@ -1,8 +1,11 @@
 .instructions {
-    margin: 20px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 20px;
     background-color: #f4f4f4;
     border: 1px solid #ddd;
+    max-width: 500px;
 }
 
 .instructionsP {
