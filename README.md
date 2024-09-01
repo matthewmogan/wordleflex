@@ -17,7 +17,7 @@ Create a Wordle clone to demonstrate command of HTML, CSS, JavaScript, and React
 **Technologies:**
 - Languages: HTML, CSS, JavaScript 
 - Modules: RandomWord 
-- APIs: https://api.dictionaryapi.dev
+- APIs: [Dictionary API](https://api.dictionaryapi.dev)
 - Frameworks: React / BrowswerRouter
 - Software development tools: Git / GitHub
 
@@ -32,12 +32,8 @@ Create a Wordle clone to demonstrate command of HTML, CSS, JavaScript, and React
 ## Future work
 
 **What's coming end of August?** 
-- NOTE - on branch guessValidation, need to create validation check and merge into main
 - P0 Improve reactive design (desktop, tablet, mobile)
-- P0 Guess validation using dictionary API
 - P1 Change letters and guesses buttons to have increment up / down buttons, don't let users edit directly
-- P1 Clear guess input bar after guesses are submitted
-- P1 Link modules and APIs in README 
 - P1 Add icon
 
 **What's coming September / October?**

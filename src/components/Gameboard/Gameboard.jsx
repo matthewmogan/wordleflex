@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./Gameboard.css"; 
 import {getRandomWord} from "../../utilities/modules"
-import {createBoardState} from "../../utilities/helpers" 
+import {createBoardState, checkWordByRegExp} from "../../utilities/helpers" 
 import {validateWord} from "../../utilities/apis";
 import GuessRow from "../GuessRow/GuessRow"
 
@@ -23,16 +23,7 @@ export default function Gameboard(){
         won: "won",
         lost: "lost"
     }
-    // round status messages
-    const roundStatusMessages = {
-        active: "Guess the secret word!",
-        won: "You won!",
-        lost: "You lost! The word was", // keyword is appended when rendered
-        invalidWord: "Guess must be a valid word"
-    }
-
-    // WordleFlex States:
-
+    
     // letters in the answer:
     const [keywordLetters, setKeywordLetters] = useState(startingLetters) 
     // max guess attempts per round:
@@ -49,9 +40,18 @@ export default function Gameboard(){
     const [guess, setGuess] = useState("") 
     // tracks whether the round is in progress, won, or lost:
     const [roundStatus, setRoundStatus] = useState(roundStatuses.active)
+    
+    // round status messages
+    const roundStatusMessages = {
+        active: "Guess the secret word!",
+        won: "You won!",
+        lost: "You lost! The word was", // keyword is appended when rendered
+        invalidWord: `Guess must be a valid, ${keywordLetters} letter English word, no nubmers, spaces, or special characters`
+    }
+    
     // text to display how many guesses the player has left, and if they won or lost
     const [statusText, setStatusText] = useState(roundStatusMessages.active)
-    
+
     // keywordLetters update event handler - gets a new keyword of a certain length, resets the board and restarts the game
 
     const updateKeywordLetters = (event) => {
@@ -87,7 +87,8 @@ export default function Gameboard(){
         setGuess(string)
     }
 
-    const resetGame = () => {
+    const resetGame = (event) => {
+        event.preventDefault()
         setKeyword(getRandomWord(keywordLetters).toUpperCase())
         setBoardLetters(createBoardState(keywordLetters,maxGuesses,""))
         setBoardEvaluated(createBoardState(keywordLetters,maxGuesses,letterEvals.inactive))
@@ -108,18 +109,18 @@ export default function Gameboard(){
             return 
         }
 
-        // 2. Check if the word is invalid - exit if invalid and change the status message to "please enter a valid word" - continue if valid
+        // 2. Check if the word is a) the correct number of letters, and no spaces or numbers, and whether b) the word is a valid english language word
 
-        const result = await validateWord(guess)
-        console.log("checking word")    
-        if (result === "invalid" ){
+        const check1 = checkWordByRegExp(guess, keywordLetters)
+        const check2 = await validateWord(guess)
+
+        if (!check1 || !check2){
             setStatusText(roundStatusMessages.invalidWord)
             console.log("invalid")
             return
-        } else
-        setStatusText(roundStatusMessages.active)
-        console.log("valid")
-
+        } else {
+            setStatusText(roundStatusMessages.active)
+        }
 
         // 3. Update the letter state of the board 
         
@@ -132,7 +133,7 @@ export default function Gameboard(){
         // update the letter state of the board:
         setBoardLetters(newBoardLetters) 
 
-        // 4. Evaluate the guess and update the evaluated state and guess number
+        // 4. Evaluate the guess and update the evaluated state and guess number. Reset the guess
         
         const evaluatedArray = Array(keywordLetters)
         const keywordArray = Array.from(keyword)
@@ -147,7 +148,8 @@ export default function Gameboard(){
         })
         newBoardEvaluated[guessNumber] = [...evaluatedArray] 
         setBoardEvaluated(newBoardEvaluated) 
-        setGuessNumber(guessNumber+1) 
+        setGuessNumber(guessNumber+1)
+        setGuess("") 
 
         // 5. Check if the player won or lost and update the round status and status text
 
@@ -174,6 +176,10 @@ export default function Gameboard(){
         }
     }
 
+    const handleKeyDown = (event) => {
+        event.preventDefault();
+      };    
+
     return (
         <>
         <form className="settings">
@@ -185,6 +191,7 @@ export default function Gameboard(){
                 max={8}
                 value={keywordLetters}
                 onChange={updateKeywordLetters}
+                onKeyDown={handleKeyDown}
             />
             <label>Guesses:</label>
             <input 
@@ -194,10 +201,11 @@ export default function Gameboard(){
                 max={8}
                 value={maxGuesses}
                 onChange={updateMaxGuesses}
+                onKeyDown={handleKeyDown}
             />
         <button 
             className="resetButton" 
-            onClick={()=>{resetGame()}}
+            onClick={resetGame}
         >Reset
         </button>
         </form>
@@ -215,12 +223,12 @@ export default function Gameboard(){
            })}
         </div>
         <form className="guess" onSubmit={calculateGuess}>
-            <label>Guess:</label>
             <input 
                 type="text" 
                 minLength={keywordLetters} 
                 maxLength={keywordLetters}
                 onChange={updateGuess}
+                value={guess}
             />
             <input 
                 type="submit" 

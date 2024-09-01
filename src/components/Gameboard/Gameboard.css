@@ -1,14 +1,21 @@
+.container {
+    margin-top: 1rem;
+    width: 300px;
+    border-radius: .75rem;
+    background: linear-gradient(#79e2ea, #9198e5);
+    margin: auto;
+}
 
 form {
     max-width: 300px;
     margin: .6rem auto;
-    display:flex;
-    justify-content: space-between;
+    align-items: ;
 }
 
 input {
     font-size: 1.1rem;
     max-width: 150px;
+    margin: 2px
 }
 
 button {
@@ -17,23 +24,11 @@ button {
 
 label {
     align-content: center;
+    margin: 2px
 }
 
 h2 {
     width: 300px;
     margin: auto;
     text-align: center;
-}
-
-.resetButton {
-    max-width: 100px;
-    padding-left: 10px;
-}
-
-.container {
-    margin-top: 1rem;
-    width: 300px;
-    border-radius: .75rem;
-    background: linear-gradient(#79e2ea, #9198e5);
-    margin: auto;
 }
