@@ -98,7 +98,7 @@ export default function Gameboard(){
 
     // Calculate Guess 
 
-    const calculateGuess = (event) => {
+    async function calculateGuess (event) {
         
         event.preventDefault()
         
@@ -110,16 +110,16 @@ export default function Gameboard(){
 
         // 2. Check if the word is invalid - exit if invalid and change the status message to "please enter a valid word" - continue if valid
 
-        validateWord("word").then(result => {
-            console.log("checking word")    
-            if (result === "invalid" ){
-                    setStatusText(roundStatusMessages.invalidWord)
-                    return
-                    // shouldn't this exit the function?
-                } else
-                setStatusText(roundStatusMessages.active)
-            }
-        )
+        const result = await validateWord(guess)
+        console.log("checking word")    
+        if (result === "invalid" ){
+            setStatusText(roundStatusMessages.invalidWord)
+            console.log("invalid")
+            return
+        } else
+        setStatusText(roundStatusMessages.active)
+        console.log("valid")
+
 
         // 3. Update the letter state of the board 
         
