@@ -12,7 +12,7 @@ Create a Wordle clone to demonstrate command of HTML, CSS, JavaScript, and React
 - Allow users to controll difficulty by changing the number of letters and number of guesses in their game
 - Word validation for guesses using external API
 - Calculate whether guesses are correct or incorrect and update gameboard to reflect
-- Testing suite for API function
+- Testing suite for helper functions
 
 **Technologies:**
 - Languages: HTML, CSS, JavaScript 
@@ -31,14 +31,8 @@ Create a Wordle clone to demonstrate command of HTML, CSS, JavaScript, and React
     
 ## Future work
 
-**What's coming end of August?** 
-- P0 Improve reactive design (desktop, tablet, mobile)
-- P0 Change letters and guesses buttons to have increment up / down buttons, don't let users edit directly
-- P1 Add icon
-
-**What's coming September / October?**
-- Redux state management, if app continues to increase in complexity
+- Redux state management if app continues to increase in complexity
 - Timer feature to track time performance of users over time 
-- Login page - play as guest, single sign-on authorization using Google
-    - Backend to store user gameplay data
+- Login page - play as guest, single sign-on authorization using Google SSO
+    - Backend to store user data and gameplay data
 - Deploy to live webpage (currently on GitHub Pages)
