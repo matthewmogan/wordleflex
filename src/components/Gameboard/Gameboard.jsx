@@ -46,7 +46,7 @@ export default function Gameboard(){
         active: "Guess the secret word!",
         won: "You won!",
         lost: "You lost! The word was", // keyword is appended when rendered
-        invalidWord: `Guess must be a valid, ${keywordLetters} letter English word, no nubmers, spaces, or special characters`
+        invalidWord: `Guess must be a valid, ${keywordLetters} letter English word, no numbers, spaces, or special characters`
     }
     
     // text to display how many guesses the player has left, and if they won or lost
