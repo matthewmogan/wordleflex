@@ -16,7 +16,7 @@ function App() {
           </li>
           <li>
             <NavLink 
-              to="/instructions"
+              to="/wordleflex/instructions"
   x          >Instructions
             </NavLink>
           </li>
@@ -24,7 +24,7 @@ function App() {
       </nav>
       <Routes>
         <Route path ="/wordleflex" element={<Gameboard/>}/>
-        <Route path ="/instructions" element ={<Instructions/>}/>
+        <Route path ="/wordleflex/instructions" element ={<Instructions/>}/>
       </Routes>
     </>
   );
