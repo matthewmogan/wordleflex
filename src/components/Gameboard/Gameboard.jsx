@@ -183,31 +183,31 @@ export default function Gameboard(){
     return (
         <>
         <form className="settings">
-            <label>Letters:</label>
+            <label>Letters</label>
             <input 
-                id="LettersInput" 
+                className="gameParameters" 
                 type="number" 
                 min={4} 
-                max={8}
+                max={7}
                 value={keywordLetters}
                 onChange={updateKeywordLetters}
                 onKeyDown={handleKeyDown}
             />
-            <label>Guesses:</label>
+            <label>Guesses</label>
             <input 
-                id="GuessesInput" 
+                className="gameParameters"
                 type="number" 
-                min={2} 
+                min={4} 
                 max={8}
                 value={maxGuesses}
                 onChange={updateMaxGuesses}
                 onKeyDown={handleKeyDown}
             />
-        <button 
-            className="resetButton" 
-            onClick={resetGame}
-        >Reset
-        </button>
+            <button 
+                className="resetButton" 
+                onClick={resetGame}
+            >Reset
+            </button>
         </form>
         <div className="container">    
            {[...Array(maxGuesses).keys()].map((arg) => {
@@ -224,6 +224,7 @@ export default function Gameboard(){
         </div>
         <form className="guess" onSubmit={calculateGuess}>
             <input 
+                className="guessInput"
                 type="text" 
                 minLength={keywordLetters} 
                 maxLength={keywordLetters}
@@ -231,13 +232,12 @@ export default function Gameboard(){
                 value={guess}
             />
             <input 
+                className="guessButton"
                 type="submit" 
                 value="Guess"
             />
         </form>
-        <div className="statusInfo">
-           <h2>{statusText}</h2>
-        </div>
+        <h2 className="statusInfo">{statusText}</h2>
         </>
     )
 }

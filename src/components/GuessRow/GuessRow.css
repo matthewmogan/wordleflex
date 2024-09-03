@@ -1,6 +1,14 @@
 .row {
     display: flex;  
     justify-content: space-evenly;
-    padding-top: .25rem;
-    padding-bottom: .25rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
+
+.row:first-of-type {
+    padding-top: 20px;
+  }
+
+  .row:last-of-type {
+    padding-bottom: 20px;
+  }

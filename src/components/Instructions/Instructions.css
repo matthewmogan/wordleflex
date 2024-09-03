@@ -8,12 +8,24 @@
     max-width: 500px;
 }
 
-.instructionsP {
+.instructionsText {
     width: 100%;
     height:fit-content;
     text-align: center
 }
 
-.instructionsH1 {
+.instructionsHeading {
     text-align: center;
+}
+
+.green {
+ color: rgba(31, 171, 57, 0.70);
+}
+
+.yellow {
+    color: rgba(212, 165, 55, 0.70);   
+}
+
+.gray {
+    color: rgba(85, 84, 84, 0.70);
 }

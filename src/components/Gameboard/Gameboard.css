@@ -1,34 +1,89 @@
-.container {
-    margin-top: 1rem;
-    width: 300px;
-    border-radius: .75rem;
-    background: linear-gradient(#79e2ea, #9198e5);
-    margin: auto;
-}
-
 form {
     max-width: 300px;
     margin: .6rem auto;
-    align-items: ;
 }
 
-input {
-    font-size: 1.1rem;
-    max-width: 150px;
-    margin: 2px
-}
-
-button {
-    font-size: 1.1rem;
-}
 
 label {
     align-content: center;
     margin: 2px
 }
 
-h2 {
+
+.container {
+    margin-top: 16px;
+    width: 300px;
+    border-radius: 12px;
+    background: linear-gradient(#79e2ea, #9198e5);
+    margin: auto;
+}
+
+/* Top Game Settings and Rest Button */ 
+
+.settings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gameParameters {
+    font-size: 18px;
+    text-align: center;
+    border: #bcbcbc 1px solid;
+    border-radius: 4px;
+}
+
+.resetButton {
+    width: 75px;
+    height: 25px;
+    font-size: 17px;
+    background-color: #79e2ea;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.resetButton:active {
+    transform: scale(0.95); /* Scales down the button when clicked */
+    background-color: #2980b9; /* Changes the background color to give feedback */
+}
+
+/* Bottom guess bar and status text*/
+
+.guess {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.guessInput{
+    width: 212px;
+    border: #bcbcbc 1px solid;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+.guessButton {
+    width: 75px;
+    height: 25px;
+    font-size: 17px;
+    background-color:#9198e5;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.guessButton:active {
+    transform: scale(0.95); /* Scales down the button when clicked */
+    background-color: #2980b9; /* Changes the background color to give feedback */
+}
+
+.statusInfo {
     width: 300px;
     margin: auto;
+    margin-top: 10px;
     text-align: center;
 }

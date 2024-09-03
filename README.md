@@ -33,7 +33,7 @@ Create a Wordle clone to demonstrate command of HTML, CSS, JavaScript, and React
 
 **What's coming end of August?** 
 - P0 Improve reactive design (desktop, tablet, mobile)
-- P1 Change letters and guesses buttons to have increment up / down buttons, don't let users edit directly
+- P0 Change letters and guesses buttons to have increment up / down buttons, don't let users edit directly
 - P1 Add icon
 
 **What's coming September / October?**

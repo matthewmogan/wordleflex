@@ -4,11 +4,11 @@ nav {
 }
 
 nav ul {
-  list-style-type: none; /* Remove bullets */
+  list-style-type: none;
   margin: 0;
   padding: 0;
-  display: flex; /* Arrange items horizontally */
-  justify-content: space-between; /* Center the navbar items */
+  display: flex; 
+  justify-content: space-between; 
 }
 
 nav ul li {
@@ -27,11 +27,9 @@ nav ul li a {
 
 nav ul li a:hover {
   background-color: #efe4d6
-  /* #575757; */
 }
 
 nav ul li a.active {
   color:  #4c507b;
   font-weight: 600;
-  /* #4CAF50;  */
 }
